@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaser Lamsatfi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080808;
+  --em:#2ecc71;
+  --lams:#f5c518;
+  --fd:#ffffff;
+  --white:#ffffff;
+  --off:#ffffff;
+  --dim:#ffffff;
+  --border:rgba(255,255,255,0.07);
+  --fh:'Barlow Condensed',sans-serif;
+  --fb:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);overflow-x:hidden;}
+
+/* GRAIN CANVAS */
+#grain-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:10000;pointer-events:none;opacity:0.10;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:rgba(8,8,8,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--fh);font-size:22px;font-weight:900;font-style:italic;color:var(--white);}
+.nav-logo span{color:var(--em);}
+.nav-links{display:flex;gap:32px;}
+.nav-link{font-size:12px;color:var(--dim);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;}
+.nav-link:hover{color:var(--white);}
+
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end;}
+#particles{position:absolute;inset:0;z-index:0;}
+.hg{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,#080808 0%,rgba(8,8,8,0.15) 60%,transparent 100%);}
+.hgl{position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(8,8,8,0.88) 0%,rgba(8,8,8,0.3) 55%,transparent 100%);}
+.sil-wrap{position:absolute;bottom:0;right:4%;z-index:2;height:92%;display:flex;align-items:flex-end;}
+.sil-wrap img{height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 0 50px rgba(46,204,113,0.1));}
+.hero-text{position:absolute;top:0;left:0;right:0;z-index:3;padding:140px 48px 0;will-change:transform;}
+.avail-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.adot{width:8px;height:8px;border-radius:50%;background:var(--em);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.atxt{font-size:11px;color:var(--em);letter-spacing:3px;text-transform:uppercase;}
+.hname{font-family:var(--fh);font-size:clamp(60px,9.5vw,116px);font-weight:900;font-style:italic;line-height:0.87;letter-spacing:-1px;text-transform:uppercase;color:var(--white);}
+.hname .ol{color:#080808;-webkit-text-stroke:2px #ffffff;text-stroke:2px #ffffff;}
+.hero-bot{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:0 48px 44px;display:flex;justify-content:space-between;align-items:flex-end;}
+.htag{font-family:var(--fh);font-size:clamp(22px,3.2vw,40px);font-weight:900;font-style:italic;text-transform:uppercase;line-height:0.95;}
+.htag .em{color:var(--em);}
+.hscroll{font-size:11px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.hscroll-line{width:28px;height:1px;background:var(--dim);}
+
+.section{padding:96px 48px;border-top:1px solid var(--border);}
+.seyebrow{display:flex;align-items:center;gap:16px;margin-bottom:10px;}
+.snum{font-size:11px;color:var(--em);letter-spacing:3px;text-transform:uppercase;}
+.eline{flex:1;height:1px;background:var(--border);}
+.stitle{font-family:var(--fh);font-size:clamp(38px,5.5vw,68px);font-weight:900;font-style:italic;text-transform:uppercase;line-height:0.9;letter-spacing:-1px;margin-bottom:52px;}
+.stitle .d{color:#080808;-webkit-text-stroke:1.5px #ffffff;}
+
+/* PROJECT CARDS */
+.proj-card{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;padding:44px 0;border-bottom:1px solid var(--border);}
+.proj-card:last-child{border-bottom:none;}
+.proj-card.fd-card{border-left:3px solid rgba(255,255,255,0.8);padding-left:28px;}
+.proj-card.lc{border-left:3px solid var(--lams);padding-left:28px;}
+.proj-hdr{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.proj-logo{width:54px;height:54px;border-radius:8px;object-fit:contain;background:rgba(255,255,255,0.03);padding:4px;border:1px solid var(--border);}
+.pnum{font-size:11px;letter-spacing:2px;margin-bottom:2px;}
+.pnum.fd{color:rgba(255,255,255,0.7);}
+.pnum.ln{color:var(--lams);}
+.ptitle{font-family:var(--fh);font-size:26px;font-weight:900;font-style:italic;text-transform:uppercase;line-height:1;}
+.ptitle.fd{color:var(--white);}
+.ptitle.lt{color:var(--lams);}
+.pstatus{font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
+.pstatus.wip{color:var(--dim);}
+.pstatus.live{color:var(--em);}
+.pdesc{font-size:15px;color:var(--off);line-height:1.75;margin-bottom:16px;}
+.ptags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.ptag{font-size:11px;padding:4px 11px;border-radius:3px;letter-spacing:0.5px;}
+.ptag.fd{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.16);}
+.ptag.lt{background:rgba(245,197,24,0.07);color:var(--lams);border:1px solid rgba(245,197,24,0.18);}
+.plink{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:8px 16px;border-radius:3px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:background 0.2s;}
+.plink.fd{color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.2);}
+.plink.fd:hover{background:rgba(255,255,255,0.06);}
+.plink.ll{color:var(--lams);border:1px solid rgba(245,197,24,0.22);}
+.plink.ll:hover{background:rgba(245,197,24,0.05);}
+.proj-img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--border);}
+.proj-img-blank{width:100%;aspect-ratio:16/10;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02);}
+
+/* EXPERIENCE */
+.exp-card{padding:32px 0 32px 28px;border-bottom:1px solid var(--border);border-left:3px solid #6b21a8;}
+.exp-card:last-child{border-bottom:none;}
+.exp-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+.exp-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:rgba(107,33,168,0.12);padding:6px;border:1px solid rgba(107,33,168,0.3);}
+.edates{font-size:11px;color:#a855f7;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.etitle{font-family:var(--fh);font-size:22px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--white);margin-bottom:3px;}
+.ecompany{font-size:13px;color:var(--dim);}
+.exp-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:16px;}
+.ebody{font-size:14px;color:var(--off);line-height:1.7;}
+.exp-photo{width:100%;height:100%;min-height:200px;object-fit:cover;border-radius:8px;border:1px solid rgba(107,33,168,0.3);object-position:center center;}
+
+/* COACHING */
+.coaching-block{margin-bottom:64px;padding-bottom:64px;border-bottom:1px solid var(--border);}
+.coaching-block:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.coaching-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.coaching-logo{width:58px;height:58px;border-radius:10px;object-fit:contain;background:rgba(255,255,255,0.04);padding:6px;border:1px solid var(--border);}
+.coaching-subtitle{font-family:var(--fh);font-size:clamp(24px,3.5vw,42px);font-weight:900;font-style:italic;text-transform:uppercase;color:var(--white);line-height:1;}
+.coaching-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.arow{display:grid;grid-template-columns:76px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--border);}
+.arow:last-child{border-bottom:none;}
+.ayear{font-size:11px;color:var(--em);letter-spacing:2px;text-transform:uppercase;padding-top:2px;}
+.atitle{font-family:var(--fh);font-size:20px;font-weight:700;font-style:italic;text-transform:uppercase;color:var(--white);margin-bottom:5px;}
+.abody{font-size:14px;color:var(--off);line-height:1.65;}
+.c-photo{width:100%;height:100%;min-height:320px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}.c-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ABOUT */
+.about-intro{font-size:clamp(15px,1.8vw,19px);color:var(--off);line-height:1.82;max-width:720px;margin-bottom:52px;}
+.about-intro strong{color:var(--white);}
+.about-intro .em{color:var(--em);font-weight:500;}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.gs{aspect-ratio:1;border-radius:6px;overflow:hidden;}
+.gs img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* SKILLS */
+.skills-clusters{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.ctitle{font-size:11px;color:var(--em);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.sk{font-size:14px;color:var(--off);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px;}
+.sk::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--em);flex-shrink:0;}
+
+footer{padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid var(--border);}
+.fn{font-family:var(--fh);font-size:20px;font-weight:900;font-style:italic;text-transform:uppercase;color:var(--white);}
+.fs{font-size:12px;color:var(--dim);margin-top:3px;letter-spacing:0.5px;}
+.flinks{display:flex;gap:24px;}
+.fl{font-size:12px;color:var(--dim);text-decoration:none;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.fl:hover{color:var(--white);}
+.fade{opacity:0;transform:translateY(26px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade.visible{opacity:1;transform:none;}
+.fd1{transition-delay:0.1s;}.fd2{transition-delay:0.2s;}.fd3{transition-delay:0.3s;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}.nav-links{gap:16px;}
+  .hero-text,.hero-bot{padding-left:24px;padding-right:24px;}
+  .section{padding:60px 24px;}
+  .proj-card,.coaching-wrap,.exp-inner{grid-template-columns:1fr;}
+  .skills-clusters{grid-template-columns:1fr 1fr;}
+  footer{padding:32px 24px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="grain-canvas"></canvas>
+<nav>
+  <div class="nav-logo">YL<span>.</span></div>
+  <div class="nav-links">
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#experience">Experience</a>
+    <a class="nav-link" href="#coaching">Coaching</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="mailto:yaser.lamsatfi@gmail.com">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hg"></div><div class="hgl"></div>
+  <div class="sil-wrap" id="sil-wrap">
+    <img src="gallery/footballShot1.png" alt="Yaser Lamsatfi">
+  </div>
+  <div class="hero-text" id="hero-text">
+    <div class="avail-row"><span class="adot"></span><span class="atxt">Available May 2026</span></div>
+    <div class="hname">YASER<br><span class="ol">LAMSATFI</span></div>
+  </div>
+  <div class="hero-bot">
+    <div class="htag">BRIDGING<br>TECHNOLOGY<br><span class="em">&amp; SPORT</span></div>
+    <div class="hscroll"><span class="hscroll-line"></span>Scroll</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section fade" id="projects">
+  <div class="seyebrow"><span class="snum">01 - Projects</span><span class="eline"></span></div>
+  <div class="stitle">WHAT I'VE<br><span class="d">BUILT</span></div>
+
+  <div class="proj-card fd-card fade fd1">
+    <div>
+      <div class="proj-hdr">
+        <img class="proj-logo" src="gallery/projectFirstDown.png" alt="Project First Down">
+        <div>
+          <div class="pnum fd">01</div>
+          <div class="ptitle fd">Project First Down</div>
+          <div class="pstatus wip">In Development</div>
+        </div>
+      </div>
+      <p class="pdesc">I am tracking all 22 players on an NFL field using computer vision. Right now I am annotating frames and working on helmet detection specifically because helmets give clean separation at the line of scrimmage where bodies overlap. Once annotated the data will be used to train a YOLO model to detect and track players across all-22 footage.</p>
+      <div class="ptags">
+        <span class="ptag fd">Python</span><span class="ptag fd">YOLOv8</span><span class="ptag fd">PyTorch</span><span class="ptag fd">Roboflow</span><span class="ptag fd">ffmpeg</span>
+      </div>
+      <a class="plink fd" href="https://github.com/YaserIsGreat/project-first-down" target="_blank"><i class="ti ti-brand-github"></i> View Repo</a>
+    </div>
+   <img class="proj-img" src="gallery/projectFirstDownShot1.png" alt="Project First Down">
+  </div>
+
+  <div class="proj-card lc fade fd2">
+    <div>
+      <div class="proj-hdr">
+        <img class="proj-logo" src="gallery/studioLams.png" alt="Studio Lams">
+        <div>
+          <div class="pnum ln">02</div>
+          <div class="ptitle lt">Studio Lams</div>
+          <div class="pstatus live">Live - 1st Client</div>
+        </div>
+      </div>
+      <p class="pdesc">A web and automation studio built for the local high street. I work directly with business owners to understand what they need, whether that is getting online for the first time, setting up a booking system or automating customer queries on the web end. Starting free to build real relationships in the community with more clients in the pipeline.</p>
+      <div class="ptags">
+        <span class="ptag lt">HTML5</span><span class="ptag lt">CSS</span><span class="ptag lt">JavaScript</span><span class="ptag lt">Bootstrap</span>
+      </div>
+      <a class="plink ll" href="https://github.com/YaserIsGreat/studio-lams" target="_blank"><i class="ti ti-brand-github"></i> View Repo</a>
+    </div>
+    <div class="proj-img-blank"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section fade" id="experience">
+  <div class="seyebrow"><span class="snum">02 - Experience</span><span class="eline"></span></div>
+  <div class="stitle">WHERE I'VE<br><span class="d">WORKED</span></div>
+  <div class="exp-card fade fd1">
+    <div class="exp-header">
+      <img class="exp-logo" src="gallery/stirlingCourtHotel_logo.png" alt="SCH" onerror="this.style.background='rgba(107,33,168,0.15)'">
+      <div>
+        <div class="edates">Oct 2024 - May 2026</div>
+        <div class="etitle">Guest Services Assistant</div>
+        <div class="ecompany">Stirling Court Hotel - University of Stirling</div>
+      </div>
+    </div>
+    <div class="exp-inner">
+      <p class="ebody">Delivered customer service across restaurants, cafes and the sports centre. Supported large-scale sporting events including the Touch Rugby European Championship and the National Scottish U19 Swim Team. Worked alongside external partners on catering operations for international summer school events.</p>
+      <img class="exp-photo" src="gallery/stirlingCourtHotel1.jpg" alt="Stirling Court Hotel">
+    </div>
+  </div>
+</section>
+
+<!-- COACHING -->
+<section class="section fade" id="coaching">
+  <div class="seyebrow"><span class="snum">03 - Coaching &amp; Leadership</span><span class="eline"></span></div>
+  <div class="stitle">ON THE<br><span class="d">FIELD</span></div>
+
+  <!-- American Football -->
+  <div class="coaching-block">
+    <div class="coaching-header">
+      <img class="coaching-logo clansmen" src="gallery/stirlingClansmen.png" alt="Stirling Clansmen">
+      <div class="coaching-subtitle">Four Years with<br>the Stirling Clansmen</div>
+    </div>
+    <div class="coaching-wrap">
+      <div>
+        <div class="arow fade fd1">
+          <div class="ayear">2025</div>
+          <div>
+            <div class="atitle">Linebacker of the Year</div>
+            <p class="abody">Voted Linebacker of the Year by the squad after the 2025 BUCS season. Led the defensive unit across multiple campaigns in the division one university league and scored a defensive touchdown in an international fixture against Université Catholique de Lille.</p>
+          </div>
+        </div>
+        <div class="arow fade fd2">
+          <div class="ayear">2024</div>
+          <div>
+            <div class="atitle">Most Improved Player</div>
+            <p class="abody">Recognised by the squad for standout development and commitment throughout the full season. Starting from no prior knowledge of football to being a multiple game MVP.</p>
+          </div>
+        </div>
+      </div>
+      <div class="c-photo fade fd2">
+        <img src="gallery/footballShot2.jpg" alt="American football">
+      </div>
+    </div>
+  </div>
+
+  <!-- Flag Football -->
+  <div class="coaching-block">
+    <div class="coaching-header">
+      <img class="coaching-logo" src="gallery/flagFootball.png" alt="Flag Football">
+      <img class="coaching-logo" src="gallery/National_Football_League_logo.svg.png" alt="NFL UK">
+      <div class="coaching-subtitle">Flag Football<br>Founder &amp; Coach</div>
+    </div>
+    <div class="coaching-wrap">
+      <div>
+        <div class="arow fade fd1">
+          <div class="ayear">2025</div>
+          <div>
+            <div class="atitle">Founded the Club</div>
+            <p class="abody">Started the University of Stirling Flag Football club from scratch and grew it to over 20 weekly members by the end of the first semester. Over the past two years the club has collaborated with NFL UK on multiple occasions covering refereeing support and equipment handouts to help the club grow.</p>
+          </div>
+        </div>
+        <div class="arow fade fd2">
+          <div class="ayear">2025</div>
+          <div>
+            <div class="atitle">School Coaching</div>
+            <p class="abody">Partnered with local schools in the Stirling area to run flag football taster sessions for kids. Planned and delivered every session making it fun and accessible for players who had never touched a ball before.</p>
+          </div>
+        </div>
+      </div>
+      <div class="c-photo fade fd2">
+        <img src="gallery/flagFootballShot1.JPG" alt="Flag football">
+      </div>
+    </div>
+  </div>
+
+  <!-- Esports -->
+  <div class="coaching-block">
+    <div class="coaching-header">
+      <img class="coaching-logo" src="gallery/Overwatch_circle_logo.svg.png" alt="Overwatch">
+      <div class="coaching-subtitle">Overwatch<br>Esports Captain</div>
+    </div>
+    <div>
+      <div class="arow fade fd1">
+        <div class="ayear">2025</div>
+        <div>
+          <div class="atitle">University Esports Captain</div>
+          <p class="abody">Led the university Overwatch team through competitive BUCS fixtures in my final year. Managed strategy, player roles and real-time decision making under pressure across the full season.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section fade" id="about">
+  <div class="seyebrow"><span class="snum">04 - About</span><span class="eline"></span></div>
+  <div class="stitle">THE PERSON<br><span class="d">BEHIND IT</span></div>
+  <p class="about-intro fade">I love technology, sport, videogames, lifting and taking the coldest photos. I'm super creative when it comes to visions and I make them happen. Whether that's building a computer vision system for NFL footage or founding a football club from nothing, I just get things done. I love comedy and I try to find any reason to laugh.</p>
+  <div class="photo-grid fade">
+    <div class="gs"><img src="gallery/lifeShot1.png" alt=""></div>
+    <div class="gs"><img src="gallery/lifeShot2.jpg" alt=""></div>
+    <div class="gs"><img src="gallery/lifeShot3.jpg" alt=""></div>
+    <div class="gs"><img src="gallery/lifeShot4.jpg" alt=""></div>
+    <div class="gs"><img src="gallery/lifeShot5.jpg" alt=""></div>
+    <div class="gs"><img src="gallery/lifeShot7.jpg" alt=""></div>
+    <div class="gs"><img src="gallery/footballShot4.JPG" alt=""></div>
+    <div class="gs"><img src="gallery/footballShot5.JPG" alt=""></div>
+    <div class="gs"><img src="gallery/footballShot7.JPG" alt=""></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section fade" id="skills">
+  <div class="seyebrow"><span class="snum">05 - Skills</span><span class="eline"></span></div>
+  <div class="stitle">THE<br><span class="d">TOOLKIT</span></div>
+  <div class="skills-clusters">
+    <div>
+      <div class="ctitle">Languages</div>
+      <div class="sk">Python</div><div class="sk">Java</div><div class="sk">JavaScript</div>
+      <div class="sk">SQL</div><div class="sk">HTML5 / CSS</div><div class="sk">Bash</div>
+    </div>
+    <div>
+      <div class="ctitle">ML / Vision</div>
+      <div class="sk">YOLOv8 / PyTorch</div><div class="sk">OpenCV</div><div class="sk">MediaPipe</div>
+      <div class="sk">Roboflow</div><div class="sk">NumPy</div>
+    </div>
+    <div>
+      <div class="ctitle">Web / Backend</div>
+      <div class="sk">Spring Boot</div><div class="sk">Bootstrap</div><div class="sk">MySQL</div>
+      <div class="sk">REST APIs</div><div class="sk">Postman</div>
+    </div>
+    <div>
+      <div class="ctitle">Tools</div>
+      <div class="sk">Git / GitHub</div><div class="sk">VS Code</div><div class="sk">IntelliJ</div>
+      <div class="sk">ffmpeg</div><div class="sk">Orange</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section fade" id="countries">
+  <div class="seyebrow"><span class="snum">06 — Lived In</span><span class="eline"></span></div>
+  <div class="stitle">MULTICULTURAL<br><span class="d">ADVENTURE</span></div>
+  <p style="font-size:15px;color:#ffffff;margin-bottom:32px;">Fluent in English, Spanish and Moroccan Darija, and ready to go anywhere the work takes me.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">🇲🇦</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;font-style:italic;text-transform:uppercase;color:#ffffff;">Morocco</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">🇪🇸</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;font-style:italic;text-transform:uppercase;color:#ffffff;">Spain</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;font-style:italic;text-transform:uppercase;color:#ffffff;">Scotland</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:40px 24px;text-align:center;">
+      <div style="font-size:64px;margin-bottom:16px;">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;font-style:italic;text-transform:uppercase;color:#ffffff;">England</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="fn">Yaser Lamsatfi</div>
+    <div class="fs">Software Engineer · Newcastle, NI · Available May 2026</div>
+  </div>
+  <div class="flinks">
+    <a class="fl" href="https://github.com/YaserIsGreat" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+    <a class="fl" href="https://linkedin.com/in/yaser-lamsatfi" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+    <a class="fl" href="mailto:yaser.lamsatfi@gmail.com"><i class="ti ti-mail"></i> Email</a>
+  </div>
+</footer>
+
+<script>
+const C=document.getElementById('particles');
+const ctx=C.getContext('2d');
+let W,H,pts=[];
+function resize(){W=C.width=window.innerWidth;H=C.height=window.innerHeight;}
+function mkPts(){pts=[];for(let i=0;i<72;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,r:Math.random()*1.2+0.4});}
+function draw(){
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#080808';ctx.fillRect(0,0,W,H);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(46,204,113,0.5)';ctx.fill();});
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(46,204,113,'+(0.07*(1-d/110))+')';ctx.lineWidth=0.5;ctx.stroke();}}
+  requestAnimationFrame(draw);
+}
+resize();mkPts();draw();
+window.addEventListener('resize',()=>{resize();mkPts();});
+window.addEventListener('scroll',()=>{
+  const t=window.scrollY;
+  const ht=document.getElementById('hero-text');if(ht)ht.style.transform='translateY('+(t*0.38)+'px)';
+  const sw=document.getElementById('sil-wrap');if(sw)sw.style.transform='translateY('+(t*0.12)+'px)';
+});
+// GRAIN
+(function(){
+  const gc=document.getElementById('grain-canvas');
+  const gx=gc.getContext('2d');
+  function drawGrain(){
+    gc.width=window.innerWidth;
+    gc.height=window.innerHeight;
+    const id=gx.createImageData(gc.width,gc.height);
+    const d=id.data;
+    for(let i=0;i<d.length;i+=4){
+      const v=Math.random()*255|0;
+      d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=255;
+    }
+    gx.putImageData(id,0,0);
+  }
+  drawGrain();
+  setInterval(drawGrain,60);
+  window.addEventListener('resize',drawGrain);
+})();
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.07});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
